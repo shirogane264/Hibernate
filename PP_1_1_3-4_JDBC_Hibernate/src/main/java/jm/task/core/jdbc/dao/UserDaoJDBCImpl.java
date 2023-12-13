@@ -18,10 +18,10 @@ public class UserDaoJDBCImpl implements UserDao {
     public void createUsersTable() {
         try (Statement statement = createStatement()) {
             statement.execute("CREATE TABLE if not exists UsersTable (\n" +
-                    "  id INT NOT NULL AUTO_INCREMENT,\n" +
+                    "  id BIGINT NOT NULL AUTO_INCREMENT,\n" +
                     "  name VARCHAR(45) NULL,\n" +
                     "  lastName VARCHAR(45) NULL,\n" +
-                    "  age INT NULL,\n" +
+                    "  age TINYINT NULL,\n" +
                     "  PRIMARY KEY (id),\n" +
                     "  UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE);");
         } catch (SQLException e) {
