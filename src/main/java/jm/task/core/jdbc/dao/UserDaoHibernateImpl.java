@@ -5,9 +5,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 
@@ -30,6 +27,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
+            transaction.rollback();
         }
     }
 
@@ -42,6 +40,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
+            transaction.rollback();
         }
     }
 
@@ -54,6 +53,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
+            transaction.rollback();
         }
     }
 
@@ -66,6 +66,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
+            transaction.rollback();
         }
     }
 
@@ -73,12 +74,9 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         try (Session session = Util.getSessionFactory().openSession()) {
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<User> criteriaQuery = builder.createQuery(User.class);
-            Root<User> root = criteriaQuery.from(User.class);
-            criteriaQuery.select(root);
-            Query<User> query = session.createQuery(criteriaQuery);
-            return query.getResultList();
+            Query query = session.createQuery("FROM User");
+            List<User> list = query.list();
+            return list;
         } catch (HibernateException e) {
             throw new RuntimeException(e);
         }
@@ -94,6 +92,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
+            transaction.rollback();
         }
     }
 }
