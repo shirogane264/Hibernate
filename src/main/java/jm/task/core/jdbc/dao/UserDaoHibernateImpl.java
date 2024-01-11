@@ -27,7 +27,6 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
-            transaction.rollback();
         }
     }
 
@@ -40,7 +39,6 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
-            transaction.rollback();
         }
     }
 
@@ -53,7 +51,6 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
-            transaction.rollback();
         }
     }
 
@@ -66,7 +63,6 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
-            transaction.rollback();
         }
     }
 
@@ -78,7 +74,6 @@ public class UserDaoHibernateImpl implements UserDao {
             List<User> list = query.list();
             return list;
         } catch (HibernateException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -92,7 +87,6 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
-            transaction.rollback();
         }
     }
 }
